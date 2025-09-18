@@ -1,0 +1,22 @@
+name: C++ Docker CI
+
+on:
+  push:
+    branches: [ main ]  # triggers workflow on every push to main branch
+
+jobs:
+  build-and-run:
+    runs-on: ubuntu-latest
+
+    steps:
+      # Step 1: Checkout the repository
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      # Step 2: Build the Docker image
+      - name: Build Docker image
+        run: docker build -t cpp-app .
+
+      # Step 3: Run the Docker container
+      - name: Run Docker container
+        run: docker run cpp-app
